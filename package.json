@@ -1,0 +1,23 @@
+{
+  "name": "vin-decoder-mcp-minimal",
+  "version": "1.0.0",
+  "description": "Minimalny serwer MCP do dekodowania numeru VIN",
+  "main": "vin_mcp_server.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx vin_mcp_server.ts",
+    "test": "node test-server.js",
+    "test-mcp": "npx fastmcp dev vin_mcp_server.ts",
+    "build": "tsc vin_mcp_server.ts --outDir dist --target ES2022 --module ESNext --moduleResolution node",
+    "start": "node dist/vin_mcp_server.js"
+  },
+  "dependencies": {
+    "@cardog/corgi": "^1.2.1",
+    "fastmcp": "^1.2.0",
+    "zod": "^3.22.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.0"
+  }
+}
