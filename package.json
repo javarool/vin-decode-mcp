@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@cardog/corgi": "^1.2.1",
-    "fastmcp": "^1.2.0",
+    "fastmcp": "^3.18.0",
     "zod": "^3.22.0"
   },
   "devDependencies": {
