@@ -50,16 +50,46 @@ server.addTool({
     for (const vin of vins) {
       try {
         const fullResult = await quickDecode(vin.trim());
-        const vehicleData: TruckingVehicleData = {
+
+        // Build vehicle data, filtering out Unknown values
+        const rawData: any = {
           vin: vin.toUpperCase(),
           year: fullResult.components.vehicle?.year || 0,
-          make: fullResult.components.vehicle?.make || 'Unknown',
+          make: fullResult.components.vehicle?.make,
           model: fullResult.components.vehicle?.model,
-          // gvwr: fullResult.components.vehicle?.gvwr,
+          gvwr: fullResult.components.vehicle?.gvwr,
           bodyStyle: fullResult.components.vehicle?.bodyStyle,
           isCommercialTruck: isCommercialTruck(vin),
         };
-        results.push(vehicleData);
+
+        // Filter out undefined, null, empty strings, 0, and "Unknown" values
+        const vehicleData: any = {};
+        let hasValidData = false;
+
+        for (const [key, value] of Object.entries(rawData)) {
+          // Always keep VIN and isCommercialTruck
+          if (key === 'vin' || key === 'isCommercialTruck') {
+            vehicleData[key] = value;
+            continue;
+          }
+
+          // Skip Unknown, undefined, null, empty string, and 0 year
+          if (value && value !== 'Unknown' && value !== 0) {
+            vehicleData[key] = value;
+            hasValidData = true;
+          }
+        }
+
+        // If no valid data found, show not found message
+        if (!hasValidData) {
+          results.push({
+            vin: vin.toUpperCase(),
+            status: 'not found',
+            message: 'Vehicle information not found in database'
+          });
+        } else {
+          results.push(vehicleData);
+        }
       } catch (error) {
         errors.push({
           vin,
