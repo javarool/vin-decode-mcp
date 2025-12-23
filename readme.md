@@ -31,7 +31,7 @@ vindecode ["1FUJGBDV85LM12345", "1M2P264C7YM012345"]
   "mcpServers": {
     "vin-decoder": {
       "command": "npx",
-      "args": ["tsx", "/home/vadim/WORK_DIR/McpServers/vin-decoder-mcp/vin_mcp_server.ts"]
+      "args": ["tsx", "/home/vadim/WORK_DIR/McpServers/vin-decode-mcp/vin_mcp_server.ts"]
     }
   }
 }
@@ -42,7 +42,7 @@ vindecode ["1FUJGBDV85LM12345", "1M2P264C7YM012345"]
     "vin-decoder": {
       "command": "npm",
       "args": ["run", "dev"],
-      "cwd": "/home/vadim/WORK_DIR/McpServers/vin-decoder-mcp"
+      "cwd": "/home/vadim/WORK_DIR/McpServers/vin-decode-mcp"
     }
   }
 }

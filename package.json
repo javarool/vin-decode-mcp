@@ -1,5 +1,5 @@
 {
-  "name": "vin-decoder-mcp-minimal",
+  "name": "vin-decode-mcp-minimal",
   "version": "1.0.0",
   "description": "Minimalny serwer MCP do dekodowania numeru VIN",
   "main": "vin_mcp_server.ts",
